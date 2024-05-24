@@ -3,6 +3,7 @@ import Home from "../components/Home";
 import About from "../components/About";
 import Users from "../components/Users";
 import NotFound from "../components/NotFound";
+import Details from "../components/Details";
 import { Route, Routes } from "react-router-dom";
 
 const MainRoutes = () => {
@@ -11,7 +12,17 @@ const MainRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/users" element={<Users />} />
+
+        {/* first way */}
+        {/* <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<Details />} /> */}
+
+        {/* second way */}
+        <Route path="/users" element={<Users />} >
+          <Route path="/users/:id" element={<Details />} />
+        </Route>
+
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

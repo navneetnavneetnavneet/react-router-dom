@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const Users = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
@@ -11,14 +13,13 @@ const Users = () => {
     event.preventDefault();
     console.log("Form Submitted !");
 
-    
-    console.log({username, email, contact})
+    console.log({ username, email, contact });
 
     navigate("/");
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-5">
       <form onSubmit={submitHandler}>
         <input
           onChange={(e) => setUsername(e.target.value)}
@@ -51,6 +52,26 @@ const Users = () => {
           Submit
         </button>
       </form>
+      <hr />
+      <ul className="mt-5 list-disc">
+        <li className="list-item">
+          <Link className="text-xl font-semibold" to={`${pathname}/1`}>
+            Item 1
+          </Link>
+        </li>
+        <li className="list-item">
+          <Link className="text-xl font-semibold" to={`${pathname}/2`}>
+            Item 2
+          </Link>
+        </li>
+        <li className="list-item">
+          <Link className="text-xl font-semibold" to={`${pathname}/3`}>
+            Item 3
+          </Link>
+        </li>
+      </ul>
+      <hr />
+      <Outlet />
     </div>
   );
 };
