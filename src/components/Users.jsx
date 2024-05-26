@@ -1,16 +1,16 @@
-import axios from "axios";
+import axios from "../helper/axios";
 import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Users = () => {
   const { pathname } = useLocation();
+  const [users, setUsers] = useState([]);
 
   // axios call
   const getUsers = async () => {
-    const { data } = await axios.get(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-    console.log(data);
+    const { data } = await axios.get("/users");
+    setUsers(data);
+    // console.log(data);
   };
 
   return (
@@ -24,21 +24,11 @@ const Users = () => {
       </button>
       <hr />
       <ul className="my-5 list-disc">
-        <li className="list-item">
-          <Link className="text-xl font-semibold" to={`${pathname}/1`}>
-            Item 1
-          </Link>
-        </li>
-        <li className="list-item">
-          <Link className="text-xl font-semibold" to={`${pathname}/2`}>
-            Item 2
-          </Link>
-        </li>
-        <li className="list-item">
-          <Link className="text-xl font-semibold" to={`${pathname}/3`}>
-            Item 3
-          </Link>
-        </li>
+        {users.length > 0 ? users.map((user) => (
+          <li key={user.id} className="list-item">
+            {user.username}
+          </li>
+        )) : "Loading..."}
       </ul>
       <hr />
       <Outlet />
