@@ -1,59 +1,29 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Users = () => {
-  const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setContact] = useState("");
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-    console.log("Form Submitted !");
-
-    console.log({ username, email, contact });
-
-    navigate("/");
+  // axios call
+  const getUsers = async () => {
+    const { data } = await axios.get(
+      "https://jsonplaceholder.typicode.com/users"
+    );
+    console.log(data);
   };
 
   return (
     <div className="mt-5">
-      <form onSubmit={submitHandler}>
-        <input
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-          className="border-2 rounded-md px-4 py-1"
-          type="text"
-          placeholder="Username"
-        />
-        <br />
-        <br />
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          className="border-2 rounded-md px-4 py-1"
-          type="email"
-          placeholder="email@email.com"
-        />
-        <br />
-        <br />
-        <input
-          onChange={(e) => setContact(e.target.value)}
-          value={contact}
-          className="border-2 rounded-md px-4 py-1"
-          type="text"
-          placeholder="Contact"
-        />
-        <br />
-        <br />
-        <button className="px-2 py-1 rounded-md bg-sky-600 text-white">
-          Submit
-        </button>
-      </form>
+      <h1 className="text-5xl font-extrabold text-blue-300">Users</h1>
+      <button
+        onClick={getUsers}
+        className="px-4 py-2 rounded-md bg-red-500 text-white my-5"
+      >
+        Get Users
+      </button>
       <hr />
-      <ul className="mt-5 list-disc">
+      <ul className="my-5 list-disc">
         <li className="list-item">
           <Link className="text-xl font-semibold" to={`${pathname}/1`}>
             Item 1
