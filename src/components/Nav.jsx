@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <nav className="flex gap-x-10 justify-center mt-10">
+    <nav className="flex gap-x-10 justify-center">
       <NavLink
         style={(e) => ({ fontWeight: e.isActive ? "900" : "400" })}
         className={(e) => (e.isActive ? "text-red-400" : "")}
