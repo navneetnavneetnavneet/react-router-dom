@@ -25,6 +25,13 @@ const Nav = () => {
       >
         Users
       </NavLink>
+      <NavLink
+        style={(e) => ({ fontWeight: e.isActive ? "900" : "400" })}
+        className={(e) => (e.isActive ? "text-red-400" : "")}
+        to="/register"
+      >
+        Register
+      </NavLink>
     </nav>
   );
 };

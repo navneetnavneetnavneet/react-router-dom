@@ -5,11 +5,13 @@ import Users from "../components/Users";
 import NotFound from "../components/NotFound";
 import Details from "../components/Details";
 import { Route, Routes } from "react-router-dom";
+import RegisterForm from "../components/RegisterForm";
 
 const MainRoutes = () => {
   return (
     <div>
       <Routes>
+        <Route path="/register" element={<RegisterForm />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
 
@@ -18,10 +20,9 @@ const MainRoutes = () => {
         <Route path="/users/:id" element={<Details />} /> */}
 
         {/* second way */}
-        <Route path="/users" element={<Users />} >
+        <Route path="/users" element={<Users />}>
           <Route path="/users/:id" element={<Details />} />
         </Route>
-
 
         <Route path="*" element={<NotFound />} />
       </Routes>
